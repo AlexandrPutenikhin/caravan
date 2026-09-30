@@ -11,10 +11,19 @@ echo 'rule cc' > $NINJA_FILE
 echo '  command = gcc -c $in -o $out' >> $NINJA_FILE
 echo >> $NINJA_FILE
 
+echo 'rule link' >> $NINJA_FILE
+echo '  command = gcc -o $out $in' >> $NINJA_FILE
+echo >> $NINJA_FILE
+
+objs=""
+
 for srcf in $SOURCES;
 do
     srcrel="../${srcf}"
     objf=$(echo $srcf | sed "s/src/obj/")
     objf=$(echo $objf | sed "s/.c/.o/")
+    objs="${objf} ${objs}"
     echo "build ${objf}: cc ${srcrel}" >> $NINJA_FILE
 done
+
+echo "build romulus: link ${objs}" >> $NINJA_FILE
