@@ -20,7 +20,8 @@
 
 int main(void)
 {
-  tb_init();
+  int initStatus = tb_init();
+  if (initStatus != TB_OK) return initStatus;
 
   while (1) {
     tb_clear();
@@ -36,6 +37,5 @@ int main(void)
     if (ev.type == TB_EVENT_KEY && ev.key == TB_KEY_CTRL_C) break;
   }
 
-  tb_shutdown();
-  return 0;
+  return tb_shutdown();
 }
