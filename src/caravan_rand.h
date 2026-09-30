@@ -1,0 +1,3 @@
+#ifndef CARAVAN_RAND_H
+#define CARAVAN_RAND_H
+#endif // CARAVAN_RAND_H
