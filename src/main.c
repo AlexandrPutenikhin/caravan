@@ -33,7 +33,7 @@ int main(void)
     tb_present();
     struct tb_event ev;
     tb_poll_event(&ev);
-    if (ev.type == TB_EVENT_KEY && ev.key == TB_KEY_ESC) break;
+    if (ev.type == TB_EVENT_KEY && ev.key == TB_KEY_CTRL_C) break;
   }
 
   tb_shutdown();
