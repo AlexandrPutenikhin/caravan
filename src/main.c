@@ -1,7 +1,9 @@
-#include <stdio.h>
+#define TB_IMPL
+#include "termbox2.h"
 
 int main(void)
 {
-  puts("Hello, World!");
+  tb_init();
+  tb_shutdown();
   return 0;
 }
