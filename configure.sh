@@ -4,6 +4,7 @@ BUILD_DIR='build/'
 NINJA_FILE="${BUILD_DIR}build.ninja"
 SOURCES=src/*.c
 CFLAGS='-Wall -Wextra -O3'
+GAME_NAME='caravan'
 
 set -ex
 
@@ -28,4 +29,4 @@ do
     echo "build ${objf}: cc ${srcrel}" >> $NINJA_FILE
 done
 
-echo "build romulus: link ${objs}" >> $NINJA_FILE
+echo "build ${GAME_NAME}: link ${objs}" >> $NINJA_FILE
