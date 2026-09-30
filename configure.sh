@@ -3,16 +3,20 @@
 BUILD_DIR='build/'
 NINJA_FILE="${BUILD_DIR}build.ninja"
 SOURCES=src/*.c
+CFLAGS='-Wall -Wextra -O3'
 
 set -ex
 
 mkdir -p $BUILD_DIR
-echo 'rule cc' > $NINJA_FILE
-echo '  command = gcc -c $in -o $out' >> $NINJA_FILE
+
+echo "cflags = $CFLAGS" > $NINJA_FILE
+
+echo 'rule cc' >> $NINJA_FILE
+echo "  command = gcc \$cflags -c \$in -o \$out" >> $NINJA_FILE
 echo >> $NINJA_FILE
 
 echo 'rule link' >> $NINJA_FILE
-echo '  command = gcc -o $out $in' >> $NINJA_FILE
+echo "  command = gcc \$cflags -o \$out \$in" >> $NINJA_FILE
 echo >> $NINJA_FILE
 
 objs=""
