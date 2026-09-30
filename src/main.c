@@ -20,10 +20,18 @@
 
 int main(void)
 {
-  struct tb_event ev;
   tb_init();
 
   while (1) {
+    tb_clear();
+
+    const int currentHeight = tb_height() - 1;
+    for (int i = 0; i < tb_width(); i++) {
+      tb_set_cell(i, currentHeight, ' ', TB_BLACK, TB_WHITE);
+    }
+
+    tb_present();
+    struct tb_event ev;
     tb_poll_event(&ev);
     if (ev.type == TB_EVENT_KEY && ev.key == TB_KEY_ESC) break;
   }
