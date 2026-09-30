@@ -13,11 +13,9 @@ echo "cflags = $CFLAGS" > $NINJA_FILE
 
 echo 'rule cc' >> $NINJA_FILE
 echo "  command = gcc \$cflags -c \$in -o \$out" >> $NINJA_FILE
-echo >> $NINJA_FILE
 
 echo 'rule link' >> $NINJA_FILE
 echo "  command = gcc \$cflags -o \$out \$in" >> $NINJA_FILE
-echo >> $NINJA_FILE
 
 objs=""
 
