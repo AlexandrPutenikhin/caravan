@@ -12,5 +12,5 @@ $ ninja
 
 ## Dependencies
 
-This program uses [termbox2](https://github.com/termbox/termbox2)
+This program uses [termbox2](https://github.com/termbox/termbox2)  
 **Copyright (c) 2021 termbox developers**
