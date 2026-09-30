@@ -13,7 +13,8 @@ mkdir -p $BUILD_DIR
 echo "cflags = $CFLAGS" > $NINJA_FILE
 
 echo 'rule cc' >> $NINJA_FILE
-echo '  command = gcc $cflags -c $in -o $out' >> $NINJA_FILE
+echo '  depfile = $out.d' >> $NINJA_FILE
+echo '  command = gcc $cflags -c $in -o $out -MD -MF $out.d' >> $NINJA_FILE
 
 echo 'rule link' >> $NINJA_FILE
 echo '  command = gcc $cflags -s -o $out $in' >> $NINJA_FILE
