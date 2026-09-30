@@ -23,7 +23,7 @@ for srcf in $SOURCES;
 do
     srcrel="../${srcf}"
     objf=$(echo $srcf | sed "s/src/obj/")
-    objf=$(echo $objf | sed "s/.c/.o/")
+    objf="${objf}.o"
     objs="${objf} ${objs}"
     echo "build ${objf}: cc ${srcrel}" >> $NINJA_FILE
 done
