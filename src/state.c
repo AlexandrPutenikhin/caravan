@@ -16,30 +16,39 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include <malloc.h>
+#include "termbox2.h"
 #include "state.h"
 
 struct CaravanState {
-  int tickNum;
+  int width, height;
 };
 
 CaravanState_t* CaravanState_init()
 {
   CaravanState_t* state = malloc(sizeof(struct CaravanState));
-  state->tickNum = 0;
+  state->width = tb_width();
+  state->height = tb_height();
   return state;
 }
 
 bool CaravanState_tick(CaravanState_t* state, const struct tb_event event)
 {
-  state->tickNum++;
   if (event.type == TB_EVENT_KEY && event.key == TB_KEY_CTRL_C) return true;
+
+  if (event.type == TB_EVENT_RESIZE) {
+    state->width = event.w;
+    state->height = event.h;
+  }
+
   return false;
 }
 
-void CaravanState_draw(CaravanState_t* state)
+void CaravanState_draw(const CaravanState_t* state)
 {
   tb_clear();
-  tb_printf(0, 0, TB_WHITE, TB_BLACK, "Tick: %d", state->tickNum);
+  for (int i = 0; i < state->width; i++) {
+    tb_set_cell(i, state->height - 1, ' ', TB_BLACK, TB_WHITE | TB_BRIGHT);
+  }
 }
 
 void CaravanState_clean(CaravanState_t* state)

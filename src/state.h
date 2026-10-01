@@ -27,7 +27,7 @@ CaravanState_t* CaravanState_init();
    ret: True if tick is final, false otherwise
  */
 bool CaravanState_tick(CaravanState_t* state, const struct tb_event event);
-void CaravanState_draw(CaravanState_t* state);
+void CaravanState_draw(const CaravanState_t* state);
 void CaravanState_clean(CaravanState_t* state);
 
 #endif
