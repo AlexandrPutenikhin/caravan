@@ -17,12 +17,16 @@
  */
 #ifndef CARAVAN_STATE_H
 #define CARAVAN_STATE_H
+#include <stdbool.h>
 #include "termbox2.h"
 
 typedef struct CaravanState CaravanState_t;
 
-void CaravanState_init(CaravanState_t* state);
-void CaravanState_tick(CaravanState_t* state, struct tb_event event);
+CaravanState_t* CaravanState_init();
+/**
+   ret: True if tick is final, false otherwise
+ */
+bool CaravanState_tick(CaravanState_t* state, const struct tb_event event);
 void CaravanState_draw(CaravanState_t* state);
 void CaravanState_clean(CaravanState_t* state);
 

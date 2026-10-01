@@ -16,25 +16,23 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 #include "termbox2.h"
+#include "state.h"
 
 int main(void)
 {
   int initStatus = tb_init();
   if (initStatus != TB_OK) return initStatus;
 
+  CaravanState_t* state = (CaravanState_t*)CaravanState_init();
+
+  struct tb_event ev = {0};
   while (1) {
-    tb_clear();
-
-    const int currentHeight = tb_height() - 1;
-    for (int i = 0; i < tb_width(); i++) {
-      tb_set_cell(i, currentHeight, ' ', TB_BLACK, TB_WHITE);
-    }
-
+    if (CaravanState_tick(state, ev)) break;
+    CaravanState_draw(state);
     tb_present();
-    struct tb_event ev;
     tb_poll_event(&ev);
-    if (ev.type == TB_EVENT_KEY && ev.key == TB_KEY_CTRL_C) break;
   }
 
+  CaravanState_clean(state);
   return tb_shutdown();
 }
